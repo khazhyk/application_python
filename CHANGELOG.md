@@ -2,6 +2,9 @@ application_python Cookbok CHANGELOG
 ====================================
 This file is used to list changes made in each version of the application_python cookbook.
 
+v3.1.0
+------
+- Update to application ~> 4.1.6 because of https://github.com/poise/application/issues/53
 
 v3.0.0
 ------
