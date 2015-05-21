@@ -65,9 +65,9 @@ action :before_migrate do
       # GIT_SSH allow us to reuse the deployment key used to clone the main
       # repository to clone any private requirements
       if new_resource.deploy_key
-        environment 'HOME' => ::File.join(new_resource.path,'shared'), 'GIT_SSH' => "#{new_resource.path}/deploy-ssh-wrapper"
+        environment new_resource.environment.merge('HOME' => ::File.join(new_resource.path,'shared'), 'GIT_SSH' => "#{new_resource.path}/deploy-ssh-wrapper")
       else
-        environment 'HOME' => ::File.join(new_resource.path,'shared')
+        environment new_resource.environment.merge('HOME' => ::File.join(new_resource.path,'shared'))
       end
       user new_resource.owner
       group new_resource.group
@@ -86,6 +86,7 @@ action :before_symlink do
       user new_resource.owner
       group new_resource.group
       cwd new_resource.release_path
+      environment new_resource.environment
     end
   end
 
